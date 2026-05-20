@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería </title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* ── Variables ─────────────────────────────── */
+        :root {
+            --bg:       #0f0d0b;
+            --surface:  #1a1714;
+            --border:   #2e2a25;
+            --text:     #f0ebe3;
+            --muted:    #7a7068;
+            --accent:   #d4a853;
+            --accent2:  #c46b3a;
+            --green:    #4caf7d;
+            --red:      #e05252;
+            --blue:     #5b9bd5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ── Header ────────────────────────────────── */
+        header {
+            background: linear-gradient(135deg, #1a1412 0%, #251e17 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        header .logo { font-size: 2rem; }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent);
+            letter-spacing: .02em;
+        }
+        header p { color: var(--muted); font-size: .85rem; margin-top: .2rem; }
+
+        /* ── Tabs ──────────────────────────────────── */
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+            padding: 0 2rem;
+        }
+        .tab {
+            padding: .9rem 1.6rem;
+            cursor: pointer;
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--muted);
+            border-bottom: 2px solid transparent;
+            transition: all .2s;
+            user-select: none;
+        }
+        .tab:hover { color: var(--text); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+        /* ── Panels ────────────────────────────────── */
+        .panel { display: none; padding: 2rem; }
+        .panel.active { display: block; }
+
+        /* ── Section header ────────────────────────── */
+        .sec-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .sec-sub {
+            font-size: .78rem;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            margin-bottom: 1.4rem;
+        }
+
+        /* ── Button groups ─────────────────────────── */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 1.6rem;
+        }
+        button {
+            padding: .55rem 1.1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--surface);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .18s;
+        }
+        button:hover { border-color: var(--accent); color: var(--accent); background: #231f1a; }
+        button.primary { background: var(--accent); color: #0f0d0b; border-color: var(--accent); font-weight: 600; }
+        button.primary:hover { background: #c49340; border-color: #c49340; color: #0f0d0b; }
+        button.danger { border-color: var(--red); color: var(--red); }
+        button.danger:hover { background: #2a1515; }
+
+        /* ── Tables ────────────────────────────────── */
+        .table-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-head {
+            padding: .8rem 1.2rem;
+            border-bottom: 1px solid var(--border);
+            font-size: .8rem;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .table-head span { color: var(--accent); font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            text-align: left;
+            padding: .7rem 1rem;
+            font-size: .75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+        }
+        td {
+            padding: .7rem 1rem;
+            font-size: .88rem;
+            border-bottom: 1px solid #1e1c18;
+            font-family: 'DM Mono', monospace;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #1e1b16; }
+
+        /* ── Badges ────────────────────────────────── */
+        .badge {
+            display: inline-block;
+            padding: .15rem .55rem;
+            border-radius: 99px;
+            font-size: .72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+        .badge-bebidas    { background: #162433; color: var(--blue); }
+        .badge-comida     { background: #2a1c10; color: var(--accent2); }
+        .badge-postres    { background: #1f1230; color: #b07ad4; }
+        .badge-basicos    { background: #162613; color: var(--green); }
+        .badge-panaderia  { background: #261f0d; color: var(--accent); }
+        .badge-promo      { background: #1f2a14; color: #8bc34a; }
+
+        /* ── Caja totals ───────────────────────────── */
+        .totales {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.4rem;
+            flex-wrap: wrap;
+        }
+        .total-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            min-width: 160px;
+            flex: 1;
+        }
+        .total-card .label {
+            font-size: .72rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: .4rem;
+        }
+        .total-card .value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .total-card.highlighted { border-color: var(--accent); background: #1e1a12; }
+        .total-card.highlighted .value { font-size: 1.9rem; }
+
+        /* ── Cliente grid ──────────────────────────── */
+        #menu-cliente {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: .8rem;
+            margin-top: 1rem;
+        }
+        .card-prod {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            transition: border-color .2s, transform .15s;
+        }
+        .card-prod:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .prod-nombre { font-weight: 600; font-size: .95rem; }
+        .prod-precio { font-family: 'DM Mono', monospace; font-size: 1.05rem; color: var(--accent); margin-top: auto; }
+        .tachado { text-decoration: line-through; color: var(--muted); font-size: .85rem; }
+        .promo-precio { color: var(--green) !important; font-size: 1.1rem; }
+
+        /* ── Code hint ─────────────────────────────── */
+        .hint {
+            display: inline-block;
+            background: #191512;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: .25rem .6rem;
+            font-family: 'DM Mono', monospace;
+            font-size: .75rem;
+            color: var(--accent2);
+            margin-left: .4rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">☕</div>
+    <div>
+        <h1>Cafetería </h1>
+        
+    </div>
+</header>
+
+<!-- ── Tabs ─────────────────────────────────────────── -->
+<div class="tabs">
+    <div class="tab active" onclick="showTab('cocina')">Cocina </div>
+    <div class="tab"        onclick="showTab('caja')"  > Caja   </div>
+    <div class="tab"        onclick="showTab('cliente')"> Cliente </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL COCINA                                       -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="panel active" id="panel-cocina">
+    <p class="sec-title">Gestión de Productos</p>
+    
+
+    <div class="btn-group">
+        <button class="primary" onclick="AgregarProducto()">＋ Agregar</button>
+        <button onclick="EditarProducto()">Editar</button>
+        <button class="danger" onclick="EliminarProducto()">🗑 Eliminar</button>
+    </div>
+
+    <div class="btn-group">
+        <button onclick="mostrarTodos()"> Todos</button>
+        <button onclick="productosBaratos()"> Baratos (≤$50)</button>
+        <button onclick="productosCaros()"> Caros (&gt;$60)</button>
+        <button onclick="filtrarBebidas()">Bebidas</button>
+        <button onclick="filtrarPostres()">Postres</button>
+        <button onclick="buscarProducto()">Buscar</button>
+    </div>
+
+    <div class="table-wrap">
+        <div class="table-head">
+            <span id="tabla-titulo">Todos los Productos</span>
+            <span id="count-cocina" style="color:var(--muted)"></span>
+        </div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Nombre</th><th>Precio</th><th>Categoría</th></tr>
+            </thead>
+            <tbody id="tbody-cocina"></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL CAJA                                         -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="panel" id="panel-caja">
+    <p class="sec-title">Pedidos y Totales</p>
+    
+
+    <div class="btn-group">
+        <button class="primary" onclick="agregarPedido()">＋ Agregar Pedido</button>
+        <button onclick="mostrarPedidos()"> Mostrar Pedidos</button>
+    </div>
+
+    <div class="table-wrap">
+        <div class="table-head"><span>Lista de Pedidos</span></div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Producto</th><th>Precio</th></tr>
+            </thead>
+            <tbody id="tbody-caja"></tbody>
+        </table>
+    </div>
+
+    <div class="totales">
+        <div class="total-card">
+            <div class="label">Subtotal</div>
+            <div class="value" id="subtotal">$0.00</div>
+        </div>
+        <div class="total-card">
+            <div class="label">IVA (16 %)</div>
+            <div class="value" id="iva">$0.00</div>
+        </div>
+        <div class="total-card highlighted">
+            <div class="label">Total</div>
+            <div class="value" id="total">$0.00</div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PANEL CLIENTE                                      -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="panel" id="panel-cliente">
+    <p class="sec-title">Vista del Menú</p>
+    
+
+    <div class="btn-group">
+        <button onclick="mostrar_prod()"> Todos los productos</button>
+        <button onclick="mostrarMenu()">☕ Menú dinámico</button>
+        <button onclick="mostrarPromociones()"> Promociones</button>
+    </div>
+
+    <div id="menu-cliente"></div>
+</div>
+
+<!-- ── Scripts ───────────────────────────────────────── -->
+<script src="cocina.js"></script>
+<script src="cliente.js"></script>
+<script src="caja.js"></script>
+<script>
+    function showTab(name) {
+        document.querySelectorAll('.tab').forEach((t, i) => {
+            t.classList.toggle('active', ['cocina','caja','cliente'][i] === name);
+        });
+        document.querySelectorAll('.panel').forEach(p => {
+            p.classList.toggle('active', p.id === `panel-${name}`);
+        });
+    }
+</script>
+</body>
+</html>
