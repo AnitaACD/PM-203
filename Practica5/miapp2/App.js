@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'react-native';
 import {Saludo} from './components/Saludo';
 import {Saludo2} from './components/Saludo2';
+import {Perfil} from './components/Perfil';
 
 
 /*Zona 2: main  */
@@ -24,7 +25,8 @@ export default function App() {
       <Text>--------------- componente propio compuesto------------------</Text>
       
       <Saludo2></Saludo2>
-
+      <Text>--------------- Componente Nativo---------------------------</Text>
+      <Perfil></Perfil>
 
       <StatusBar style="auto" />
     </View>
