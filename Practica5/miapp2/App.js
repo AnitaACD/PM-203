@@ -12,23 +12,16 @@ import {Perfil} from './components/Perfil';
 export default function App() {
   return (
     <View style={styles.container}>
-
-      <Text>--------------- componentes Nativos------------------</Text>
-
-      <Image source={require('./assets/wave.png')}/>
-      <Text> Hola mundo react Native </Text>
       
-      <Text>--------------- componente propio ------------------</Text>
-
-      <Saludo></Saludo>
-
-      <Text>--------------- componente propio compuesto------------------</Text>
       
-      <Saludo2></Saludo2>
-      <Text>--------------- Componente Nativo---------------------------</Text>
-      <Perfil></Perfil>
+      <Perfil nombre="Ana Francisco Nicolas" carrera="Ingeniería en Sistemas Computacionales" materia="Programación Móvil" cuatrimestre="9° Cuatrimestre" > </Perfil>
+
+      <Perfil nombre="Ana" carrera="ISC" materia="Programación Móvil" cuatrimestre="9°" />
+      
 
       <StatusBar style="auto" />
+
+
     </View>
   );
 }
