@@ -2,16 +2,14 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import MenuScreen from './screens/MenuScreen';
+
 
 
 /*Zona 2: main  */
-export default function App() {
+export default function ImageBacgroundScreen() {
   return (
     <View style={styles.container}>
-      
-      <MenuScreen></MenuScreen>
-      
+      <Text> Aqui va la practica de Maria Inés </Text>
 
       <StatusBar style="auto" />
 
