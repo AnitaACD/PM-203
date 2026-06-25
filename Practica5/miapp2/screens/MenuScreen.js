@@ -42,7 +42,7 @@ export default function MenuScreen() {
              return (
              <View style={styles.container}>
 
-                <text> Menu de Practicas: </text>
+                <Text> Menu de Practicas: </Text>
                 
                 <Button onPress={()=>setScreen('tarjetas')} title='Practica: Tarjetas'/>
                 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection:'colum'
+    flexDirection: 'colum',
   },
 
 });

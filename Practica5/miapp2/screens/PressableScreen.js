@@ -41,9 +41,7 @@ export default function PressableScreen() {
           }
         ]}
       >
-        <Text style={styles.buttonText}>
-          Guardar Cambios
-        </Text>
+        <Text style={styles.buttonText}> Guardar Cambios</Text>
       </Pressable>
 
     </View>

@@ -103,13 +103,9 @@ export default function SafeAreaScreen() {
 
         
         <View style={styles.tarjeta}>
-          <Text style={styles.subtitulo}>
-            Ejemplo de State
-          </Text>
+          <Text style={styles.subtitulo}> Ejemplo de State</Text>
 
-          <Text style={styles.texto}>
-            {mensaje}
-          </Text>
+          <Text style={styles.texto}>{mensaje}</Text>
 
           <Pressable
             style={styles.boton}
@@ -119,9 +115,7 @@ export default function SafeAreaScreen() {
               )
             }
           >
-            <Text style={styles.textoBoton}>
-              Cambiar Mensaje
-            </Text>
+            <Text style={styles.textoBoton}>Cambiar Mensaje</Text>
           </Pressable>
         </View>
 
