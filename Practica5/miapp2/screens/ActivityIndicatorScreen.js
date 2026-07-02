@@ -11,11 +11,11 @@ import {
   Button,
   Keyboard,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 
 /*Zona 2: Main - Hogar de los componentes */
 export default function ActivityIndicatorScreen() {
-
   const [cargando, setCargando] = useState(false);
 
   const handleSubmit = () => {
@@ -28,27 +28,65 @@ export default function ActivityIndicatorScreen() {
 
   return (
     <KeyboardAvoidingView
+      style={styles.screen}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
-      enabled ={true}
-      style={{ flex: 1 }}>
+      enabled={true}
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ padding: 24, flex: 1, justifyContent: 'space-around' }}>
-
-          <Text style={{ fontSize: 36, marginBottom: 48 }}>Header</Text>
-
+        <View style={styles.container}>
+          <Text style={styles.header}>Header</Text>
           <TextInput
-            placeholder="Username" style={{ height: 40, borderColor: '#000000', borderBottomWidth: 1, marginBottom: 36 }}/>
-
-          {cargando && (<ActivityIndicator animating={true} size="large" color="green" style={{ marginVertical: 12 }} />)}
-
-          <View style={{ backgroundColor: 'white', marginTop: 12 }}>
+            style={styles.input}
+            placeholder="Username"
+          />
+          {cargando && (
+            <ActivityIndicator
+              animating={true}
+              size="large"
+              color="green"
+              style={styles.spinner}
+            />
+          )}
+          <View style={styles.buttonWrapper}>
             <Button title="Submit" onPress={handleSubmit} />
           </View>
-
         </View>
       </TouchableWithoutFeedback>
-      <StatusBar style="auto" />
     </KeyboardAvoidingView>
   );
 }
+
+/*Zona 3: Estilos y Posicionamiento */
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
+
+  container: {
+    padding: 24,
+    flex: 1,
+    justifyContent: 'space-around',
+  },
+
+  header: {
+    fontSize: 36,
+    marginBottom: 48,
+  },
+
+  input: {
+    height: 40,
+    borderColor: '#000000',
+    borderBottomWidth: 1,
+    marginBottom: 36,
+  },
+
+  spinner: {
+    marginVertical: 12,
+  },
+
+  buttonWrapper: {
+    backgroundColor: 'white',
+    marginTop: 12,
+  },
+});
