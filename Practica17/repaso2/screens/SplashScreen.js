@@ -1,59 +1,80 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
 
-export default function SplashScreen() {
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+} from "react-native";
 
-    return (
 
-        <View style={styles.container}>
+export default function SplashScreen({ cambiarPantalla }) {
 
-            <Image
-                source={require('../assets/fondo1.jpg')}
-                style={styles.imagen}
-            />
+  useEffect(() => {
 
-            <Text style={styles.texto}>
-                Registro de Libros
-            </Text>
+    setTimeout(() => {
 
-        </View>
+      cambiarPantalla();
 
-    );
+    }, 2000);
+
+  }, []);
+
+
+  return (
+
+    <View style={styles.container}>
+
+      <Image
+        source={require("../assets/splash-icon.png")}
+        style={styles.imagen}
+      />
+
+      <Text style={styles.texto}>
+        repaso2
+      </Text>
+
+    </View>
+
+  );
 
 }
 
+
 const styles = StyleSheet.create({
 
-    container:{
+  container: {
 
-        flex:1,
+    flex: 1,
 
-        justifyContent:'center',
+    justifyContent: "center",
 
-        alignItems:'center',
+    alignItems: "center",
 
-        backgroundColor:'#fff',
+    backgroundColor: "white",
 
-    },
+  },
 
-    imagen:{
 
-        width:180,
+  imagen: {
 
-        height:180,
+    width: 150,
 
-        resizeMode:'contain',
+    height: 150,
 
-    },
+    resizeMode: "contain",
 
-    texto:{
+  },
 
-        marginTop:20,
 
-        fontSize:24,
+  texto: {
 
-        fontWeight:'bold',
+    fontSize: 20,
 
-    }
+    fontWeight: "bold",
+
+    marginTop: 10,
+
+  },
 
 });

@@ -1,19 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import SplashScreen from './screens/SplashScreen';
-import HomeScreen from './screens/HomeScreen';
+import React, { useState } from "react";
+
+import SplashScreen from "./screens/SplashScreen";
+import LibrosScreen from "./screens/LibrosScreen";
+
 
 export default function App() {
 
-  const [mostrarSplash, setMostrarSplash] = useState(true);
+  const [splash, setSplash] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMostrarSplash(false);
-    }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  const cambiarPantalla = () => {
 
-  return mostrarSplash ? <SplashScreen /> : <HomeScreen />;
+    setSplash(false);
+
+  };
+
+
+  if (splash) {
+
+    return (
+
+      <SplashScreen
+        cambiarPantalla={cambiarPantalla}
+      />
+
+    );
+
+  }
+
+
+  return (
+
+    <LibrosScreen />
+
+  );
 
 }
